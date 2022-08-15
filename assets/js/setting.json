@@ -1,0 +1,30 @@
+{
+  "filter": {
+    "filterCategoryShow": 1,
+    "filterManufacturerShow": 1,
+    "filterPriceShow": 1
+  },
+  "images": {
+    "link": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEWSURBVEiJ7ZU9TsNAEEafkWsaH4BI4adPiRTFp0iRG1BCA20qUtkUCQ01DdegpKAnNEi4pOAEUHjsrOxZZ9YuaPik0Y52te/bWY29EcN0DIw8a9/Ay0A+BfDTEZN4oMGMdgVL4FzyQ9fgBDgyQF+BL8nfJSplAn8Gpu6me7pLdePRY5zJegakkqexnPwCeACejBVo8EsgB67EoFbtZoBrupX9ucY86Al14TfAHWUFqmq3QHjO7s6bGgOfMvYyWNG+Fq9CDYLgoQbVtWjwhLKFk74G+06ucqxddApcs6dbNFn/RW/AmYxBCvkOguGhBr30b/D3BjHluwqwwN62muYyFtriBvuL1hXrJjhycuub7NMHsG1O/gLRPlvyXGXGnAAAAABJRU5ErkJggg==)",
+    "addToCart": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAF6SURBVEiJxdSxThVBFMbxn+YKFTc+AF4rX4BAI5dauQnPQAdYWlPDCxBCYyvyClj6ABo7cgu9YaGTysRIIxRnSGCdWZe9JP6Tze7OOXPOnDPfDN1ZwRHOcYkzfMBwipighwN8xwbm8SS9N9P4fvIDY1zhB7ZbJDjAMeYK9jl8TEnuMI+vWGsIvoJvmeDj2n8fEyzXA7zBu4YER6Itda4yY1s4rA8u4UtDgnNRaZsEA7Hxd5jFnzTh5rld/iVm0ve45lf3n8Xv3Cp/Yb2hgmctK3iO6nHGcIpXhQSfMCrY6oyS/18c4qQwaeh+KnqZC7Iu2lRiX+i8X7D3k32vFKAvevq0YO+lJBMhxYHY+IGQ+SQF7+WnB00bfcOyaGcl1FXhvUJb6pzIHJIu5FQEn7HQId5bLLZJcCx6el/+1Va7op+5E9rmuRAnuMhPvOiw8tbsmK6C3P31/xgJbVdYncKnSCUOzVBcgJ18SjK9bX/0AD5ZVsWqTvG6q881+yN50zxlPQwAAAAASUVORK5CYII=)",
+    "filterArrow": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABVSURBVDiN7dCxDkBAFETRo9j4RJ3/sxIavk5BoxBhV1DubefOvORR+JUWESHhBPS7exkOmFC/yJPSo/JZnnc5YLwrV4mR7pCvaLDkrp9HovxjC1/ZAN3qDxFwDHgDAAAAAElFTkSuQmCC)",
+    "filterToggle": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAA7AAAAOwBeShxvQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEzSURBVFiF7dW7SkNBEMbxX7wkBLS2MCooeKmMj+MtPoSFWHlpNO/gixhbY0oFLQVBbCy0lESUWOwJRolFYs6myR8O7C7LfMN8c2YZMqQzeSwjNwjxI7yjiRdsxhQvJcLn2MUdPrCalmAGZygm+zcsYlaowgLu8YTnFPRvRlII+i+2BQsqIlnQiQM0fDfhekzxFnksITsI8X6TwwomByG+hVfBzgaOY4qvCQ18KzR0JUlkp/3S7znQT6ZQwDwehH56xHiyJ9IcyPyxTp2inxZcCBaUYiaxIcySJuo4jCneIis87RNpBJ8THq7ozKAmlLaJK6Hjo1ETPD3BabKu9hJoTPdzYDS5X8Z+2/kervHZRay+zYGo/zfB87pQ/nKyvoyZQEHwvNWEVUzHTKDFTPINGdIzX8UEQ3cIBou7AAAAAElFTkSuQmCC)",
+    "closerButton": "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABvSURBVDiNrZJBDoAgDAQnvgsD8nsv6jPkF14wMaSFNjgnUnaXAAs/sQPRoU/A+R0E4AaywbwCBdjaDUuIaraEhJG5FebBzBziNr+kaix1LbJ4U61MXWHqEXvCYU8sRVIP8FRZDDnofJVABC6HXucBQIIijutzc9AAAAAASUVORK5CYII=')"
+  },
+  "colors": {
+    "filterBoxHeadBg": "#212121",
+    "filterBoxHeadTextColor": "#ffffff",
+    "filterArrowBg": "#c4c4c4",
+    "filterPriceButtonBg": "#EDCB96",
+    "filterPriceButtonText": "#000",
+    "filterToggleButton": "#EDCB96",
+    "searchCloserButton": "#c4c4c4",
+    "priceColor": "#F7C4A5",
+    "loadMoreButtonBg": "#EDCB96",
+    "loadMoreButtonText": "#000",
+    "productTextColor": "#212121",
+    "addToCardButtonBg": "#EDCB96",
+    "scrollBarBg": "#EDCB9620",
+    "scrollBarThumbBg": "#EDCB96"
+  }
+}
