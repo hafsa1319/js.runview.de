@@ -17,6 +17,30 @@ if(document.querySelector("#runsearch").dataset.domain) {
     domainName = window.location.host;
 }
 
+/* Language Select */
+let languageShow = document.querySelector(".language-selector");
+let languageSelect;
+let languageId;
+
+if(languageShow) {
+    if(languageShow.querySelector("select")) {
+        let arr = [];
+        arr.length = languageShow.querySelector("select").length;
+        languageId = languageShow.querySelector("select").options[languageShow.querySelector("select").selectedIndex].value;
+
+        languageSelect = findLanguageId(languageId)
+
+    }
+    else if(languageShow.querySelector("ul")) {
+        let arr = [];
+        arr.length = languageShow.querySelectorAll("ul li").length;
+        languageId = languageShow.querySelector("ul li a img.selected").parentElement.href;
+
+        languageSelect = findLanguageId(languageId)
+    }
+}
+
+
 const body = {
     "searches": [
         {
@@ -30,47 +54,12 @@ const body = {
         }
     ]
 };
-const localLanguage = window.navigator.language;
-
-
-let langId = function () {
-    switch (localLanguage) {
-        case "tr-TR":
-            return 2
-        case "tr":
-            return 2
-        case "de":
-            return 3
-        case "en-US":
-            return 1
-        case "en-GB":
-            return 1
-        case "en-AU":
-            return 1
-        case "en-CA":
-            return 1
-        case "en-NZ":
-            return 1
-        case "en-ie":
-            return 1
-        case "en-jm":
-            return 1
-        case "en-za":
-            return 1
-        case "en":
-            return 1
-        default:
-            return 2
-    }
-}
-
 
 let filterCategoryShow;
 let filterManufacturerShow;
 let filterPriceShow;
 // Settings
 fetch("./assets/js/setting.json").then(res => res.json()).then(data => {
-    console.log(data);
     filterCategoryShow = data.filter.filterCategoryShow
     filterManufacturerShow = data.filter.filterManufacturerShow
     filterPriceShow = data.filter.filterPriceShow
@@ -154,7 +143,8 @@ const search = {
             },
             body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
-            let dataList = data.results[0].hits
+            //console.log(data)
+            let dataList = data.results[0].hits;
             search.products(dataList);
             let productLength = data.results[0].found;
             let pageLength = body.searches[0]["page"];
@@ -176,7 +166,7 @@ const search = {
             },
             body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
-            console.log(data)
+            //console.log(data)
             let dataList = data.results[0].hits;
             search.pageProducts(dataList);
             let productLength = data.results[0].found;
@@ -196,7 +186,6 @@ const search = {
         // Filter Clear
         this.filterClear();
         // Filters Boxes
-        console.log(filterCategoryShow,filterManufacturerShow,filterPriceShow);
         if(filterManufacturerShow === 1) {this.filterManufacturer(list)};
         if(filterCategoryShow === 1) {this.filterCategory(list)};
         if(filterPriceShow === 1) {this.filterPrice(list)}
@@ -208,15 +197,19 @@ const search = {
         // Filter Clear
         this.filterClear();
         // Filters Boxes
-        console.log(filterCategoryShow,filterManufacturerShow,filterPriceShow)
         if(filterCategoryShow === 1)  {this.filterCategory(list)}
         if(filterManufacturerShow === 1)  {this.filterManufacturer(list)}
         if(filterPriceShow === 1)  {this.filterPrice(list);}
     },
     product(item) {
+        console.log(item)
         let itemCat = item.CategoryNames.map(x => {return x});
 
-        document.querySelector(".js--result-items").innerHTML += `
+        if(languageShow) {
+            let langItemLocale = item.Locales.filter( x => x.LanguageId === languageSelect);
+            item.Name = langItemLocale[0].Name === null ? item.Name : langItemLocale[0].Name
+        }
+         document.querySelector(".js--result-items").innerHTML += `
                     <a 
                     href="https://www.${domainName}/${item.Sname}" 
                     class="run-search-item js--run-search-item"
@@ -229,9 +222,20 @@ const search = {
                         </div>
                         
                     </a>`;
+
+
+
+
+
+
     },
     pageProduct(item) {
         let itemCat = item.CategoryNames.map(x => {return x});
+
+        if(languageShow) {
+            let langItemLocale = item.Locales.filter( x => x.LanguageId === languageSelect);
+            item.Name = langItemLocale[0].Name === null ? item.Name : langItemLocale[0].Name
+        }
         document.querySelector(".js--result-items").innerHTML += `
                     <div 
                      
@@ -324,8 +328,8 @@ const search = {
         document.querySelector(".js--search-filters").innerHTML += `
 <b>Price</b>
 <div class="run-search-filter-price-box">
-<input id="priceMin" type="number" placeholder="Min Price: ${pricesMin}">
-<input id="priceMax" type="number" placeholder="Max Price: ${pricesMax}">
+<input id="priceMin" type="number" placeholder="Min: ${pricesMin}">
+<input id="priceMax" type="number" placeholder="Max: ${pricesMax}">
 <button onclick="priceFilter(${pricesMin},${pricesMax})" class="js--run-search-price-analysis">Filter Price</button>
 </div>
 `;
@@ -475,6 +479,6 @@ function priceFilterClear() {
     })
 }
 
-function priceFilterInputChange() {
-
+function findLanguageId(langUrl) {
+    return Number(langUrl.split("/")[langUrl.split("/").length - 1].charAt(0))
 }
