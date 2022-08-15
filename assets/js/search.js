@@ -10,7 +10,13 @@ runInput.innerHTML += `<div class='js--search-result run-search-result'>
 </div>`;
 let searchValue;
 const searchApiKey = "HjLvLXNtyHLIFgWmrxHK1sBvF5SUC2HD";
-const domainName = window.location.host;
+let domainName;
+if(document.querySelector("#runsearch").dataset.domain) {
+    domainName = document.querySelector("#runsearch").dataset.domain;
+} else {
+    domainName = window.location.host;
+}
+
 const body = {
     "searches": [
         {
@@ -25,6 +31,8 @@ const body = {
     ]
 };
 const localLanguage = window.navigator.language;
+
+
 let langId = function () {
     switch (localLanguage) {
         case "tr-TR":
