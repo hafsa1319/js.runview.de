@@ -159,19 +159,7 @@ const search = {
                 "Content-Type": "application/json;charset=utf-8",
                 "X-TYPESENSE-API-KEY": searchApiKey
             },
-            body: JSON.stringify({
-                "searches": [
-                    {
-                        "collection": "allProducts",
-                        "query_by": "Name",
-                        "filter_by": `domain:=${domainName}`,
-                        "use_cache": true,
-                        "cache_ttl": 60,
-                        "page": 1,
-                        "per_page": 75
-                    }
-                ]
-            })
+            body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
             console.log(data)
             let dataList = data.results[0].hits;
@@ -213,55 +201,105 @@ const search = {
         let itemCat = item.CategoryNames.map(x => {return x});
        function langName() {switch (languageSelect) {
             case 1:
-                return item.Name_1
+                if(item.Name_1) {
+                    return item.Name_1
+                } else if(item.Name_1 === "") {
+                    return item.name
+                }
+                else {
+                    return item.Name
+                }
                 break;
-            case 2:
-                return item.Name_2
-                break;
-            case 3:
-                return item.Name_3
-                break;
-            case 4:
-                return item.Name_4
-                break;
-            case 5:
-                return item.Name_5
-                break;
+           case 2:
+               if(item.Name_2) {
+                   return item.Name_2
+               } else if(item.Name_2 === "") {
+                   return item.name
+               }
+               else {
+                   return item.Name
+               }
+               break;
+           case 3:
+               if(item.Name_3) {
+                   return item.Name_3
+               } else if(item.Name_3 === "") {
+                   return item.name
+               }
+               else {
+                   return item.Name
+               }
+               break;
+           case 4:
+               if(item.Name_4) {
+                   return item.Name_4
+               } else if(item.Name_4 === "") {
+                   return item.name
+               }
+               else {
+                   return item.Name
+               }
+               break;
+           case 5:
+               if(item.Name_5) {
+                   return item.Name_5
+               } else if(item.Name_5 === "") {
+                   return item.name
+               }
+               else {
+                   return item.Name
+               }
+               break;
         }}
         function langSName() {switch (languageSelect) {
             case 1:
-                if(item.SeName_1 && item.SeName_1 === "") {
-                    return item.SName
-                } else {
+                if(item.SeName_1) {
                     return item.SeName_1
+                } else if(item.SeName_1 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
             case 2:
-                if(item.SeName_2 && item.SeName_2 === "") {
-                    return item.SName
-                } else {
+                if(item.SeName_2) {
                     return item.SeName_2
+                } else if(item.SeName_2 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
             case 3:
-                if(item.SeName_1 && item.SeName_1 === "") {
-                    return item.SName
-                } else {
-                    return item.SeName_1
+                if(item.SeName_3) {
+                    return item.SeName_3
+                } else if(item.SeName_3 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
             case 4:
-                if(item.SeName_4 && item.SeName_4 === "") {
-                    return item.SName
-                } else {
+                if(item.SeName_4) {
                     return item.SeName_4
+                } else if(item.SeName_4 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
             case 5:
-                if(item.SeName_5 && item.SeName_5 === "") {
-                    return item.SName
-                } else {
+                if(item.SeName_5) {
                     return item.SeName_5
+                } else if(item.SeName_5 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
         }}
@@ -285,55 +323,105 @@ const search = {
 
         function langName() {switch (languageSelect) {
             case 1:
-                return item.Name_1
+                if(item.Name_1) {
+                    return item.Name_1
+                } else if(item.Name_1 === "") {
+                    return item.name
+                }
+                else {
+                    return item.Name
+                }
                 break;
             case 2:
-                return item.Name_2
+                if(item.Name_2) {
+                    return item.Name_2
+                } else if(item.Name_2 === "") {
+                    return item.name
+                }
+                else {
+                    return item.Name
+                }
                 break;
             case 3:
-                return item.Name_3
+                if(item.Name_3) {
+                    return item.Name_3
+                } else if(item.Name_3 === "") {
+                    return item.name
+                }
+                else {
+                    return item.Name
+                }
                 break;
             case 4:
-                return item.Name_4
+                if(item.Name_4) {
+                    return item.Name_4
+                } else if(item.Name_4 === "") {
+                    return item.name
+                }
+                else {
+                    return item.Name
+                }
                 break;
             case 5:
-                return item.Name_5
+                if(item.Name_5) {
+                    return item.Name_5
+                } else if(item.Name_5 === "") {
+                    return item.name
+                }
+                else {
+                    return item.Name
+                }
                 break;
         }}
         function langSName() {switch (languageSelect) {
             case 1:
-                if(item.SeName_1 && item.SeName_1 === "") {
-                    return item.SName
-                } else {
+                if(item.SeName_1) {
                     return item.SeName_1
+                } else if(item.SeName_1 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
             case 2:
-                if(item.SeName_2 && item.SeName_2 === "") {
-                    return item.SName
-                } else {
+                if(item.SeName_2) {
                     return item.SeName_2
+                } else if(item.SeName_2 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
             case 3:
-                if(item.SeName_1 && item.SeName_1 === "") {
-                    return item.SName
-                } else {
-                    return item.SeName_1
+                if(item.SeName_3) {
+                    return item.SeName_3
+                } else if(item.SeName_3 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
             case 4:
-                if(item.SeName_4 && item.SeName_4 === "") {
-                    return item.SName
-                } else {
+                if(item.SeName_4) {
                     return item.SeName_4
+                } else if(item.SeName_4 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
             case 5:
-                if(item.SeName_5 && item.SeName_5 === "") {
-                    return item.SName
-                } else {
+                if(item.SeName_5) {
                     return item.SeName_5
+                } else if(item.SeName_5 === "") {
+                    return item.SeName
+                }
+                else {
+                    return item.SeName
                 }
                 break;
         }}
@@ -344,12 +432,12 @@ const search = {
                     data-category="${itemCat}">
                         <img loading="lazy" src="${item.ProductPictureModels.Data.length === 0 ? "" : item.ProductPictureModels.Data[0].PictureUrl}">
                         <div class="run-search-item__info">
-                            <b>${item.Name}</b>
+                            <b>${langName()}</b>
                             <span><span>${item.Price}</span> ${search.currency(item)}</span>
                         </div>
                         <div class="run-search-buttons">
                             <a href="https://www.${domainName}/${langSName()}"></a>
-                            <button></button>
+                            <button onclick="if (!window.__cfRLUnblockHandlers) return false; AjaxCart.addproducttocart_details('/addproducttocart/details/${item.id}/1', '#product-details-form');return false;"></button>
                         </div>
                         
                     </a>`;
