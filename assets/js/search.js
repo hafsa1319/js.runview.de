@@ -57,7 +57,7 @@ let filterCategoryShow;
 let filterManufacturerShow;
 let filterPriceShow;
 // Settings
-fetch("./assets/js/setting.json").then(res => res.json()).then(data => {
+fetch("https://js.runview.de/assets/js/setting.json").then(res => res.json()).then(data => {
     filterCategoryShow = data.filter.filterCategoryShow;
     filterManufacturerShow = data.filter.filterManufacturerShow;
     filterPriceShow = data.filter.filterPriceShow;
