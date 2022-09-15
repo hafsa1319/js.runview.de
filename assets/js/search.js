@@ -27,9 +27,7 @@ if(languageShow) {
         let arr = [];
         arr.length = languageShow.querySelector("select").length;
         languageId = languageShow.querySelector("select").options[languageShow.querySelector("select").selectedIndex].value;
-
         languageSelect = findLanguageId(languageId)
-
     }
     else if(languageShow.querySelector("ul")) {
         let arr = [];
@@ -45,7 +43,7 @@ const body = {
     "searches": [
         {
             "collection": "allProducts",
-            "query_by": "Name",
+            "query_by": `Name_${languageSelect}`,
             "filter_by": `domain:=${domainName}`,
             "use_cache": true,
             "cache_ttl": 60,
@@ -60,9 +58,9 @@ let filterManufacturerShow;
 let filterPriceShow;
 // Settings
 fetch("./assets/js/setting.json").then(res => res.json()).then(data => {
-    filterCategoryShow = data.filter.filterCategoryShow
-    filterManufacturerShow = data.filter.filterManufacturerShow
-    filterPriceShow = data.filter.filterPriceShow
+    filterCategoryShow = data.filter.filterCategoryShow;
+    filterManufacturerShow = data.filter.filterManufacturerShow;
+    filterPriceShow = data.filter.filterPriceShow;
     const searchStyle = document.createElement("style");
 
     searchStyle.textContent = `
@@ -128,12 +126,9 @@ document.querySelector("#runinput").addEventListener("keyup", function () {
     } else {
         search.value(this.value);
     }
-
-
 });
 
 const search = {
-
     value(value) {
         fetch(`https://live.runtext.de/multi_search?q=${value}`,{
             method: 'POST',
@@ -143,7 +138,7 @@ const search = {
             },
             body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
-            //console.log(data)
+            console.log(data)
             let dataList = data.results[0].hits;
             search.products(dataList);
             let productLength = data.results[0].found;
@@ -164,9 +159,21 @@ const search = {
                 "Content-Type": "application/json;charset=utf-8",
                 "X-TYPESENSE-API-KEY": searchApiKey
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify({
+                "searches": [
+                    {
+                        "collection": "allProducts",
+                        "query_by": "Name",
+                        "filter_by": `domain:=${domainName}`,
+                        "use_cache": true,
+                        "cache_ttl": 60,
+                        "page": 1,
+                        "per_page": 75
+                    }
+                ]
+            })
         }).then(res => res.json()).then(data => {
-            //console.log(data)
+            console.log(data)
             let dataList = data.results[0].hits;
             search.pageProducts(dataList);
             let productLength = data.results[0].found;
@@ -202,43 +209,136 @@ const search = {
         if(filterPriceShow === 1)  {this.filterPrice(list);}
     },
     product(item) {
-        console.log(item)
-        let itemCat = item.CategoryNames.map(x => {return x});
 
-        if(languageShow) {
-            let langItemLocale = item.Locales.filter( x => x.LanguageId === languageSelect);
-            item.Name = langItemLocale[0].Name === null ? item.Name : langItemLocale[0].Name
-        }
+        let itemCat = item.CategoryNames.map(x => {return x});
+       function langName() {switch (languageSelect) {
+            case 1:
+                return item.Name_1
+                break;
+            case 2:
+                return item.Name_2
+                break;
+            case 3:
+                return item.Name_3
+                break;
+            case 4:
+                return item.Name_4
+                break;
+            case 5:
+                return item.Name_5
+                break;
+        }}
+        function langSName() {switch (languageSelect) {
+            case 1:
+                if(item.SeName_1 && item.SeName_1 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_1
+                }
+                break;
+            case 2:
+                if(item.SeName_2 && item.SeName_2 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_2
+                }
+                break;
+            case 3:
+                if(item.SeName_1 && item.SeName_1 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_1
+                }
+                break;
+            case 4:
+                if(item.SeName_4 && item.SeName_4 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_4
+                }
+                break;
+            case 5:
+                if(item.SeName_5 && item.SeName_5 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_5
+                }
+                break;
+        }}
          document.querySelector(".js--result-items").innerHTML += `
                     <a 
-                    href="https://www.${domainName}/${item.Sname}" 
+                    href="https://www.${domainName}/${langSName()}" 
                     class="run-search-item js--run-search-item"
                     data-manufacturer="${item.Manufacturers[0]}" 
                     data-category="${itemCat}">
                         <img loading="lazy" width="35" height="35" src="${item.ProductPictureModels.Data.length === 0 ? "" : item.ProductPictureModels.Data[0].PictureUrl}">
                         <div class="run-search-item__info">
-                            <b>${item.Name}</b>
+                            <b>${langName()}</b>
                             <span><span>${item.Price}</span> ${search.currency(item)}</span>
                         </div>
                         
                     </a>`;
-
-
-
-
-
-
     },
     pageProduct(item) {
+
         let itemCat = item.CategoryNames.map(x => {return x});
 
-        if(languageShow) {
-            let langItemLocale = item.Locales.filter( x => x.LanguageId === languageSelect);
-            item.Name = langItemLocale[0].Name === null ? item.Name : langItemLocale[0].Name
-        }
+        function langName() {switch (languageSelect) {
+            case 1:
+                return item.Name_1
+                break;
+            case 2:
+                return item.Name_2
+                break;
+            case 3:
+                return item.Name_3
+                break;
+            case 4:
+                return item.Name_4
+                break;
+            case 5:
+                return item.Name_5
+                break;
+        }}
+        function langSName() {switch (languageSelect) {
+            case 1:
+                if(item.SeName_1 && item.SeName_1 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_1
+                }
+                break;
+            case 2:
+                if(item.SeName_2 && item.SeName_2 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_2
+                }
+                break;
+            case 3:
+                if(item.SeName_1 && item.SeName_1 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_1
+                }
+                break;
+            case 4:
+                if(item.SeName_4 && item.SeName_4 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_4
+                }
+                break;
+            case 5:
+                if(item.SeName_5 && item.SeName_5 === "") {
+                    return item.SName
+                } else {
+                    return item.SeName_5
+                }
+                break;
+        }}
         document.querySelector(".js--result-items").innerHTML += `
-                    <div 
-                     
+                    <div
                     class="run-search-item--type-2 js--run-search-item"
                     data-manufacturer="${item.Manufacturers[0]}" 
                     data-category="${itemCat}">
@@ -248,11 +348,11 @@ const search = {
                             <span><span>${item.Price}</span> ${search.currency(item)}</span>
                         </div>
                         <div class="run-search-buttons">
-                            <a href="${item.Sname}"></a>
+                            <a href="https://www.${domainName}/${langSName()}"></a>
                             <button></button>
                         </div>
                         
-                    </div>`;
+                    </a>`;
     },
     productsClear() {
         document.querySelector(".js--result-items").innerHTML = "";
