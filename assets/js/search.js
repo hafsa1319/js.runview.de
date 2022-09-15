@@ -10,11 +10,11 @@ runInput.innerHTML += `<div class='js--search-result run-search-result'>
 </div>`;
 let searchValue;
 const searchApiKey = "HjLvLXNtyHLIFgWmrxHK1sBvF5SUC2HD";
-let domainName;
+let domainName2;
 if(document.querySelector("#runsearch").dataset.domain) {
-    domainName = document.querySelector("#runsearch").dataset.domain;
+    domainName2 = document.querySelector("#runsearch").dataset.domain;
 } else {
-    domainName = window.location.host;
+    domainName2 = window.location.host;
 }
 
 /* Language Select */
@@ -44,7 +44,7 @@ const body = {
         {
             "collection": "allProducts",
             "query_by": `Name_${languageSelect}`,
-            "filter_by": `domain:=${domainName}`,
+            "filter_by": `domain:=${domainName2}`,
             "use_cache": true,
             "cache_ttl": 60,
             "page": 1,
@@ -305,7 +305,7 @@ const search = {
         }}
          document.querySelector(".js--result-items").innerHTML += `
                     <a 
-                    href="https://www.${domainName}/${langSName()}" 
+                    href="https://www.${domainName2}/${langSName()}" 
                     class="run-search-item js--run-search-item"
                     data-manufacturer="${item.Manufacturers[0]}" 
                     data-category="${itemCat}">
@@ -436,7 +436,7 @@ const search = {
                             <span><span>${item.Price}</span> ${search.currency(item)}</span>
                         </div>
                         <div class="run-search-buttons">
-                            <a href="https://www.${domainName}/${langSName()}"></a>
+                            <a href="https://www.${domainName2}/${langSName()}"></a>
                             <button onclick="if (!window.__cfRLUnblockHandlers) return false; AjaxCart.addproducttocart_details('/addproducttocart/details/${item.id}/1', '#product-details-form');return false;"></button>
                         </div>
                         
