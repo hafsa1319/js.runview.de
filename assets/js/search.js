@@ -39,7 +39,7 @@ if(languageShow) {
 }
 
 
-const body = {
+const body2 = {
     "searches": [
         {
             "collection": "allProducts",
@@ -120,7 +120,7 @@ document.querySelector("#runinput").addEventListener("keyup", function () {
     search.classAdd(".js--search-result","active");
     search.classAdd(".js--search-clear-items","active")
     search.productsClear();
-    body.searches[0]["page"] = 1;
+    body2.searches[0]["page"] = 1;
     if(this.classList.contains("active")) {
         search.pageValue(this.value);
     } else {
@@ -136,14 +136,14 @@ const search = {
                 "Content-Type": "application/json;charset=utf-8",
                 "X-TYPESENSE-API-KEY": searchApiKey
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body2)
         }).then(res => res.json()).then(data => {
             console.log(data)
             let dataList = data.results[0].hits;
             search.products(dataList);
             let productLength = data.results[0].found;
-            let pageLength = body.searches[0]["page"];
-            let perPageLength = body.searches[0]["per_page"];
+            let pageLength = body2.searches[0]["page"];
+            let perPageLength = body2.searches[0]["per_page"];
 
             document.querySelector(".js--loadMore").textContent = `Load more...`;
             search.pagination(productLength,perPageLength);
@@ -159,14 +159,14 @@ const search = {
                 "Content-Type": "application/json;charset=utf-8",
                 "X-TYPESENSE-API-KEY": searchApiKey
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body2)
         }).then(res => res.json()).then(data => {
             console.log(data)
             let dataList = data.results[0].hits;
             search.pageProducts(dataList);
             let productLength = data.results[0].found;
-            let pageLength = body.searches[0]["page"];
-            let perPageLength = body.searches[0]["per_page"];
+            let pageLength = body2.searches[0]["page"];
+            let perPageLength = body2.searches[0]["per_page"];
 
             document.querySelector(".js--loadMore").textContent = `Load more...`;
             search.pagination(productLength,perPageLength);
@@ -555,7 +555,7 @@ const search = {
             document.querySelector(".js--search-clear-items").innerHTML = "";
             document.querySelector(".js--search-filters").innerHTML = "";
             document.querySelector(".js--result-items").innerHTML = "";
-            body.searches[0]["page"] = number;
+            body2.searches[0]["page"] = number;
 
             search.pageValue(document.querySelector("#runinput").value);
 
